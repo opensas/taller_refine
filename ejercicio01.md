@@ -1,4 +1,4 @@
-# Solución del ejercicio 02:
+# Solución del ejercicio 01:
 
 1. Renombramos todas las columnas
 En cada columna, Edit column -> Rename this column

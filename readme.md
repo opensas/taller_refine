@@ -44,7 +44,10 @@ Usar facetas y la opción cluster para arreglar el campo provincia.
 
 El campo localidad tiene varias inconsistencias e información que está de más. Utiliza una faceta por este campo para localizar esos registros y ver qué fórmula aplicar para dejar solamente el nombre de la localidad.
 
+Nota: la solución del ejercicio está en el archivo [ejercicio01.md]
+
 ====
+
 
 ## Ejercicio 2
 
@@ -70,3 +73,5 @@ Los únicos títulos que deberían quedar son: Dr.,Ing.,Lic.,Prof. (Señor y Sr.
 Para ver cuáles son los títulos actualmente cargados resultará útil hacer una faceta por la primera palabra del campo nombre (Customized Facet)
 
 Para separar el nombre del apellido, hay que tener en cuenta que algunos registros vienen en la forma "apellido, nombre" y otros como "nombre apellido". Utilizar el filtro de texto para tratar estos dos casos por separado. En el primer caso podremos usar split separando por el caracter coma y en el segundo separarndo por el caracter espacio.
+
+Nota: la solución del ejercicio está en el archivo [ejercicio02.md]

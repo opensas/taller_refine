@@ -1,72 +1,114 @@
-# Solución del ejercicio 02:
+# Solución del ejercicio 01:
 
 1. Renombramos todas las columnas
 En cada columna, Edit column -> Rename this column
 
-2. Reordenamos las columnas
-All ->Edit columns -> Re-order / remove columns
+2. Arreglamos nacionalidad
 
-3. Arreglamos provincia
-
-2.1 Facetamos por provincia
-Click en provincia, Facet, text face
+2.1 Facetamos por nacionalidad
+Click en nacionalidad, Facet, text face
 
 2.2 Eliminamos espacios:
-Click en provincia -> Edit Cells -> Common transforms -> trim leading and trailing whitespaces
+Click en nacionalidad -> Edit Cells -> Common transforms -> trim leading and trailing whitespaces
 
-2.3 Pasamos todo a titlecase:
-Click en provincia -> Edit Cells -> Common transforms -> to titlecase
+2.2 Pasamos todo a titlecase:
+Click en nacionalidad -> Edit Cells -> Common transforms -> to titlecase
 
-2.4 Cluster
-Con la opción cluster vamos arreglando las provincias.
+2.3 Cluster
+Con la opción cluster vamos arreglando las nacionalidad para que queden de la siguiente manera:
+Argentina, Brasileña, Chilena, Uruguaya, Otra y en blanco.
 
-2.5 Editar manualmente las nacionalidad que no hayan sido resueltas mediante cluster. Deberían quedar sólo doce.
+2.4 Editar manualmente las nacionalidad que no hayan sido resueltas mediante cluster
 
-3. Arreglamos la localidad
 
-3.1 Facetamos por localidad
-Click en localidad, Facet, text face
+3. Creamos el titulo
+
+3.1 Creamos una faceta por la primera palabra del nombre, para ver cuáles son los titulos
+
+Click en nombre -> Facet -> Custom text facet
+value.split(' ')[0]
 
 3.2 Eliminamos espacios:
-Click en localidad -> Edit Cells -> Common transforms -> trim leading and trailing whitespaces
+Click en nacionalidad -> Edit Cells -> Common transforms -> trim leading and trailing whitespaces
 
-3.3 Pasamos todo a titlecase:
-Click en localidad -> Edit Cells -> Common transforms -> to titlecase
+3.3 Eliminamos espacios consecutivos:
+Click en nacionalidad -> Edit Cells -> Common transforms -> collapse consecutive whitespace
 
+3.4 Pasamos todo a titlecase:
+Click en nacionalidad -> Edit Cells -> Common transforms -> to titlecase
 
-4. Arreglamos las que tienen textos entre parentesis
+3.5 Seleccionamos manualmente cada una de las primeras palabras que son titulos
+Hacemos click en 'include' en cada una de ellas
+Doctor, Dr.,Ing, Ing., Ingeniero, Lic, Lic., Licenciado, Prof., Señor, Sr.
 
-Click en localidad -> Text filter -> ingresamos un parentesis "("
+3.6 Creamos una nueva columna llamada titulo, con la primera palabra
 
-Click en localidad -> Edit cells -> transform
-value.split('(')[0].trim()
+Click en nombre -> Edit column -> Add column based on this column
 
-5. Arreglamos las que comienzan con "Junta Central Evaluadora"
+titulo
+value.partition(' ')[0]
 
-Click en localidad -> Text filter -> ingresamos "Junta Central Evaluadora"
-hacemos click en "case sensitive"
+3.7 Eliminamos el titulo de la columna nombre
 
-Click en localidad -> Edit cells -> transform
-value.split('-')[1].trim()
+Click en nombre -> Edit cells -> transform
+value.partition(' ')[2]
 
-5. Arreglamos las que comienzan con "de Personas"
+3.8 Normalizamos titulo, facetamos por titulo
+Click en titulo -> Facet -> Text facet
 
-Click en localidad -> Text filter -> ingresamos "de Personas"
+Con la opción cluster vamos arreglando el campo titulo para que queden de la siguiente manera:
+Dr., Ing., Lic., Prof. y en blanco.
 
-Click en localidad -> Edit cells -> transform
-value.split('-')[2].trim()
+3.9 Editar manualmente las nacionalidad que no hayan sido resueltas mediante cluster
 
-Hacemos lo mismo con los que empiezan con "Municipalidad de" y con los que contienen un guion "-"
+4. Separar el nombre del apellido
 
-Click en localidad -> Edit cells -> transform
-value.replace('Municipalidad de', '').trim()
+4.1 Arreglar primero los que tienen el apellido seguido del nombre
 
-6. Cambiamos Gral por General
+Filtrar por aquellos registros que contienen una coma
 
-Click en localidad -> Edit cells -> transform
-value.replace('Gral. ', 'General ').trim()
-value.replace('Gral ', 'General ').trim()
+Click en nombre -> Text Filter -> ingresar una coma
 
-7. Exportamos como archivo csv
+Click en nombre -> Column -> Add column based on this column
+
+name: apellido
+value.split(',')[0]
+
+Click en nombre -> Column -> Add column based on this column
+
+name: nuevo_nombre
+value.split(',')[1].trim()
+
+Limpiamos el filtro
+
+4.2 Arreglamos luego los que tienen el nombre seguido del apellido
+
+Filtramos por los registros que tienen el apellido vacio (los que todavía no arreglamos)
+
+Click en apellido -> Facet -> Customized Facet -> Facet by blank -> include en true
+
+Completamos la columna nuevo nombre
+
+Click en nuevo_nombre -> Edit cells -> Transform ->
+
+cells.nombre.value.split(' ')[0]
+
+Click en apellido -> Edit cells -> Transform ->
+
+cells.nombre.value.split(' ')[1]
+
+Eliminamos la columna original nombre
+
+Click en nombre -> Edit column -> Remove this column
+
+Click en nuevo_nombre -> Edit column -> Rename this column
+
+5. Cambiamos el orden de las columnas
+
+All ->Edit columns -> Re-order / remove columns
+
+titulo, nombres, apellido, edad, nacionalidad
+
+6. Exportamos como archivo csv
 
 Export -> Comma separated value

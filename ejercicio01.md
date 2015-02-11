@@ -20,7 +20,7 @@ All ->Edit columns -> Re-order / remove columns
   4. Cluster
   Con la opción cluster vamos arreglando las provincias.
 
-  5. Editar manualmente las nacionalidad que no hayan sido resueltas mediante cluster. Deberían quedar sólo doce.
+  5. Editar manualmente las provincias que no hayan sido resueltas mediante cluster. Deberían quedar sólo doce.
 
 3. Arreglamos la localidad
 
@@ -34,9 +34,9 @@ All ->Edit columns -> Re-order / remove columns
   Click en localidad -> Edit Cells -> Common transforms -> to titlecase
 
 
-4. Arreglamos las que tienen textos entre parentesis
+4. Arreglamos las que tienen textos entre paréntesis
 
-Click en localidad -> Text filter -> ingresamos un parentesis "("
+Click en localidad -> Text filter -> ingresamos un paréntesis "("
 
 Click en localidad -> Edit cells -> transform
 value.split('(')[0].trim()

@@ -18,14 +18,14 @@ https://github.com/OpenRefine/OpenRefine/wiki/GREL-Functions
 * Reordenar columnas
 * Transformar celdas masivamente
 * Filtros de texto
-* value.split()
-* value.partition()
+* [value.split()](https://github.com/OpenRefine/OpenRefine/wiki/GREL-String-Functions#splits-sep)
+* [value.partition()](https://github.com/OpenRefine/OpenRefine/wiki/GREL-String-Functions#partitionstring-s-string-or-regex-frag-optional-boolean-omitfragment)
 
 ====
 
 ## Ejercicio 1
 
-Tomar el archivo datasets/01_juntas_discapacidad.json
+Tomar el archivo datasets/01_juntas_discapacidad.csv
 
 Generar un archivo separado por comas con las siguiente estuctura
 
@@ -51,7 +51,7 @@ Nota: la solución del ejercicio está en el archivo [ejercicio01.md](ejercicio0
 
 ## Ejercicio 2
 
-Tomar el archivo datasets/02_personas.json
+Tomar el archivo datasets/02_personas.csv
 
 Generar un archivo separado por comas con las siguiente estuctura
 
